@@ -10,9 +10,35 @@ class Url < ApplicationRecord
     self.save
   end
 
+  def increase_count(u)
+    u.access_count += 1
+    u.save!
+  end
+
   def generate_short_url
     # use the bijective function to enconde the url
     self.short_url = UrlEncoderService.instance.bijective_encode(self.id)
     self.save
+  end
+
+  def new_url?
+    u = find_duplicate
+    if u.blank?
+      true
+    else
+      increase_count(u)
+      false
+    end
+  end
+
+  def find_duplicate
+    u = Url.find_by_sanitize_url(self.sanitize_url)
+  end
+
+  def sanitize
+    self.url.strip!
+    self.sanitize_url = self.url.gsub(/(https?:\/\/)/, "")
+    self.sanitize_url.slice!(-1) if self.sanitize_url[-1] == "/"
+    self.sanitize_url = "http://#{self.sanitize_url}"
   end
 end
