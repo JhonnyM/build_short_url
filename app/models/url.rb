@@ -21,6 +21,10 @@ class Url < ApplicationRecord
     self.save
   end
 
+  def self.decode_url(minified_url)
+    UrlEncoderService.instance.bijective_decode(minified_url.split('/').last)
+  end
+
   def new_url?
     u = find_duplicate
     if u.blank?
