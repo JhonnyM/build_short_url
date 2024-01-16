@@ -11,4 +11,10 @@ class UrlsController < ApplicationController
 
   def top
   end
+
+  private
+
+  def url_params
+    params.require(:url).permit(:url)
+  end
 end
