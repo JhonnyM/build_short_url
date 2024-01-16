@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'urls#index'
+  root 'urls#new'
   get 'urls/top'
+  resources :urls, only: [:create, :show]
 end

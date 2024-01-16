@@ -1,0 +1,7 @@
+<%= form_for url do |f| %>
+  <div class="form-group">
+    <%= f.text_field :url, :class => "col-lg-6 control-label",  placeholder: "Enter the URL you want to shorten...", label: false  %>
+  </div>
+  <br />
+  <%= f.submit "Make it Short" , :class => 'btn btn-warning' %>
+<% end %>
