@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BuildShortUrl</title>
+    <title>Build URL Shortener</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= render "/shared/header" %>
+    </div>
+    <main class="container mx-auto mt-28 px-5 flex">
+      <%= yield %>
+    </main>
+    <div class="container">
+      <%= render "/shared/footer" %>
+    </div>
   </body>
 </html>
