@@ -2,7 +2,7 @@ class UrlsController < ApplicationController
   TOP_URL_DELIMITER = 100.freeze
   ORDER_DELIMITER = 'desc'.freeze
 
-  before_action :find_shortened_url, only: [:show]
+  before_action :find_shortened_url, only: [:show, :shorty]
 
   def new
     @url = Url.new
@@ -14,14 +14,14 @@ class UrlsController < ApplicationController
     if @url.new_url?
       if @url.save
         flash[:success] = "Your url its shorter now" 
-        redirect_to show_path(@url.short_url)
+        redirect_to shorty_path(@url.short_url)
       else
         flash[:error] = "Something went wrong: #{@url.errors}" 
         render :new
       end
     else
       flash[:success] = 'We found that url in our records'
-      redirect_to show_path(@url.find_duplicate.short_url)
+      redirect_to shorty_path(@url.find_duplicate.short_url)
     end
   end
 
@@ -33,7 +33,7 @@ class UrlsController < ApplicationController
     @top_urls = Url.top(ORDER_DELIMITER, TOP_URL_DELIMITER)
   end
 
-  def show
+  def shorty
     host = request.host_with_port
     @original_url = @url.sanitize_url
     @short_url = host + '/' + @url.short_url
