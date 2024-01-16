@@ -1,4 +1,7 @@
 class UrlsController < ApplicationController
+  TOP_URL_DELIMITER = 100.freeze
+  ORDER_DELIMITER = 'desc'.freeze
+
   before_action :find_shortened_url, only: [:show, :shorty]
 
   def new
@@ -27,11 +30,11 @@ class UrlsController < ApplicationController
   end
 
   def top
+    @top_urls = Url.top(ORDER_DELIMITER, TOP_URL_DELIMITER)
   end
 
   def shorty
     host = request.host_with_port
-    byebug
     @original_url = @url.sanitize_url
     @short_url = host + '/' + @url.short_url
   end
