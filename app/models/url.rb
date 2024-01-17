@@ -16,13 +16,14 @@ class Url < ApplicationRecord
   end
 
   def generate_short_url
+    byebug
     # use the bijective function to enconde the url
-    self.short_url = UrlEncoderService.instance.bijective_encode(self.id)
+    self.short_url = UrlEncoderService.bijective_encode(self.id)
     self.save
   end
 
   def self.decode_url(minified_url)
-    UrlEncoderService.instance.bijective_decode(minified_url.split('/').last)
+    UrlEncoderService.bijective_decode(minified_url)
   end
 
   def new_url?

@@ -27,7 +27,7 @@ class UrlsController < ApplicationController
   end
 
   def show
-    redirect_to @url.sanitize_url
+    redirect_to @url.sanitize_url, allow_other_host: true
   end
 
   def top

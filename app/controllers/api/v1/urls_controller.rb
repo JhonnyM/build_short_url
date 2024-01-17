@@ -36,7 +36,7 @@ class Api::V1::UrlsController < Api::V1::ApiController
     mechanize = Mechanize.new
     page = mechanize.get('http://en.wikipedia.org/wiki/Main_Page/')
     created_objects = []
-    # we will get 100 urls
+    # we will get 10 urls
     10.to_i.times do
       link = page.link_with(text: 'Random article')
       page = link.click
