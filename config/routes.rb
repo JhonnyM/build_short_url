@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   
   namespace :api do 
     namespace :v1 do
-      resources :urls, except: :destroy
+      resources :urls, except: :destroy do
+        member do
+          get :redirect
+        end
+      end
       get 'top', to: 'urls#top'
       post 'bot', to: 'urls#bot'
     end

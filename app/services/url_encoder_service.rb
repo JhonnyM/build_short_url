@@ -4,6 +4,7 @@ class UrlEncoderService
   # https://stackoverflow.com/questions/742013/how-to-code-a-url-shortener
 
   def self.bijective_encode(i)
+    return '' if i.nil?
     return ALPHABET[0] if i == 0
     s = ''
     base = ALPHABET.length
