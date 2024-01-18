@@ -32,6 +32,7 @@ class Api::V1::UrlsController < Api::V1::ApiController
     render json: Url.top(ORDER_DELIMITER, TOP_URL_DELIMITER), status: :ok
   end
 
+  # Endpoint to generate 10 urls random
   def bot
     mechanize = Mechanize.new
     page = mechanize.get('http://en.wikipedia.org/wiki/Main_Page/')

@@ -5,6 +5,10 @@
 The Idea behind this application is to generate a sortened urls and list the Top 100  accessed urls. 
 The application consist of an API and a monolith application with the traditional Views(for visualization purposes).
 
+## Code to understand the algorithm :
+
+https://stackoverflow.com/questions/742013/how-to-code-a-url-shortener
+
 
 ## Good Practices and Philosophy
 
