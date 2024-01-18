@@ -57,3 +57,9 @@ Example To get the 100 Top URLS
 curl http://localhost:3000/api/v1/top
 
 ```
+
+## UI
+
+![alt text](https://github.com/JhonnyM/build_short_url/blob/main/pic1.png?raw=true)
+
+![alt text](https://github.com/JhonnyM/build_short_url/blob/main/pic2.png?raw=true)
