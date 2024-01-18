@@ -4,6 +4,7 @@ class Url < ApplicationRecord
   scope :top, -> (order, limit) { order(access_count: order).limit(limit) }
 
   after_create :generate_short_url
+  after_create :update_title
 
   def set_access
     self.access_count = self.access_count + 1
@@ -44,5 +45,11 @@ class Url < ApplicationRecord
     self.sanitize_url = self.url.gsub(/(https?:\/\/)/, "")
     self.sanitize_url.slice!(-1) if self.sanitize_url[-1] == "/"
     self.sanitize_url = "http://#{self.sanitize_url}"
+  end
+
+  def update_title
+    #Using the basic q from rails justfor constrains, but we can implement resque or sidekick
+    # setting and async job to update the page title.
+    UpdatePageTitleJob.perform_later(self.id)
   end
 end
